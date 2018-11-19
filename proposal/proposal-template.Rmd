@@ -1,18 +1,14 @@
 ---
-title: "A Descriptive Title Here: Be Creative"
-subtitle: "STAT 385 FA2018 - Team Rebel"
+title: "Sentiment Analysis of Twitter and How it Relates to Illini Football"
+subtitle: "STAT 385 FA2018 - Team Poisseidon"
 abstract: |
-          | This is the abstract. It should probably be at most about five 
-          | sentences. The abstract should briefly explain what you are doing,
-          | why you are doing it, and what you hope to gain from it.
-          | Reading only the abstract, the reader should have a good idea 
-          | about what to expect from the rest of the document.
+          | The purpose of this project is to explore sentiment analysis of twitter and how it relates to the illini football team. We will be analyzing the tweets regarding the last game against Northwestern on 11/24. This is in order to see how fans and students view the illini football team and their opinions on Lovie Smith. Lovie Smith has a 6-year contract with the Illini and after 3 years we have failed to make a bowl game. 
 date: "November 13, 2018"
 author:
-  - Leia Organa
-  - Han Solo
-  - Luke Skywalker
-  - Lando Calrissian
+  - Joe Broton
+  - Braden Gebavi 
+  - Brad Gibbons
+  - Tim Soo
 bibliography: bibliography.bib
 output: 
   bookdown::pdf_document2
