@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 ```{r install-and-load-packages, include = FALSE}
 # All packages needed should be loaded in this chunk
-pkg_list = c('knitr', 'kableExtra', 'magrittr')
+pkg_list = c('knitr', 'kableExtra', 'magrittr','rvest')
 
 # Determine what packages are NOT installed already.
 to_install_pkgs = pkg_list[!(pkg_list %in% installed.packages()[,"Package"])]
@@ -47,17 +47,6 @@ sapply(pkg_list, require, character.only = TRUE)
 <!-- Force a new page -->
 \newpage
 
-# Instructions
-
-This document will walk you through some of the necessary steps of formatting
-your report. Do not mistake the length of this document as an example of the 
-length of a proper report. Length is not important. Communicating your idea 
-in a concise but complete manner is important. The goal of the proposal is to capture details found in Figure \@ref(fig:data-science-workflow).
-
-```{r data-science-workflow, out.width = "250px", fig.cap = "Data science workflow emphasized in R4DS. The photo has been reduced using chunk size options.", fig.pos = 'H'}
-knitr::include_graphics("images/data-science.png")
-```
-
 
 # Introduction
 
@@ -69,30 +58,67 @@ that the manager is knowledgeable in base R concepts. Make sure to answer the
 following questions:
 
 - What problem or topic are you addressing?
+
+
+
+
 - Why is it interesting or important? In particular, what evidence supports this   conclusion?
+
+
+
+
 - Cite papers or reputable sources that back up this claim. (You may want to find - material using Google Scholar.)
+
+
+
 - Where did the problem or topic come from?
+
+
+
 - What is your idea for addressing the problem or topic?
+
+
+
 - How does your idea match with the course’s focus on statistical programming?
 
-Consider adding subsections in this section. For example, consider adding
-a **data** subsection. The data subsection would describe your data. 
-What is it? Where did it come from? How will it be useful in answering your problem?
-Provide references to information about the data, but explain enough that your
-reader does not need to utilize them.
 
-Keep in mind, you may use or construct any dataset of your choice under two
-conditions:
 
-1. there is a minimum of **500** observations and **10** variables;
-2. data is _not_ from either UC Irvine Machine Learning Repository or Kaggle,
-   _not_ used as a data set in the course, and _not_ found in textbooks.
-   
-The dataset may be relevant to research outside of this course, another field,
-or some other interest of the groups. If you have any questions about whether 
-your data is appropriate, do not hesitate to ask. If you plan to use data from
-either a research project or current job be sure to gain permission from the
-data controller.
+
+
+The topic we are addressing is to examine the opinions of fans and students of the Illini football team by looking at tweets. This is interesting because Illini Football is not doing particularly well after hiring Lovie Smith and we would like to confirm that the overall opinion of the team and Lovie is negative. There are article written about this topic including Chicago Sun Times publishing an article that talks about Lovie Smith's Job security. People are speculating that he will be done after a 4th season if there isn't improvements as there hasn't been any in the past 3 seasons. 
+
+
+
+
+
+
+
+
+
+
+
+
+## Example Data
+
+```{r echo = FALSE}
+# Advance Twitter Search for tweets for Iowa game that "@"-ed Illinifootball twitter
+
+tweets_illinifootball = read_html("https://twitter.com/search?l=&q=%40illinifootball%20OR%20%40loviesmith%20since%3A2018-11-17%20until%3A2018-11-18&src=typd")
+
+# Scraping the data for the text within the tweet
+
+tweets = tweets_illinifootball %>% 
+  html_nodes("div.js-tweet-text-container > p") %>% 
+  html_text()
+
+# Displaying the Tweets
+tweets
+```
+
+These were some of the tweets regarding the last game against Iowa where the Illini lost 63 - 0. As you can see some of the tweets already show disdain against Lovie Smith and the team. Fans are embarrassed and some are saying they will not renew season tickets until the defensive coordinator is fired. We will categorize the data for sentiment analysis putting the words in the tweets into categories such as "anger", "negative", "positive", "fear", "trust", etc. By breaking down the tweets like this we will get a better understanding of the meaning of each tweet without having to manually go through each one and decipher them. 
+
+
+
 
 # Related Work
 
@@ -263,6 +289,31 @@ reference extremely easy. For more details, see the next section...
 \newpage
 
 # References
+
+
+https://chicago.suntimes.com/sports/lovie-smith-illinois-illini-northwestern-wildcats/
+
+
+https://www.tidytextmining.com/sentiment.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 The **References** section acts as a bibliography for all papers referenced
 in the **Introduction**, **Related Works**, and **Method** sections. The
