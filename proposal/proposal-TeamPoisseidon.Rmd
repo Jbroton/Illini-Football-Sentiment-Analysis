@@ -140,6 +140,10 @@ knitr::include_graphics("images/DataTab.jpg")
 knitr::include_graphics("images/GraphTab.jpg")
 ```
 
+```{r}
+citation('ggplot2')
+```
+
 
 # References
 
