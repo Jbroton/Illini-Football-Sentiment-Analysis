@@ -47,135 +47,66 @@ sapply(pkg_list, require, character.only = TRUE)
 <!-- Force a new page -->
 \newpage
 
+# Instructions
+
+This document will walk you through some of the necessary steps of formatting
+your report. Do not mistake the length of this document as an example of the 
+length of a proper report. Length is not important. Communicating your idea 
+in a concise but complete manner is important. The goal of the proposal is to capture details found in Figure \@ref(fig:data-science-workflow).
+
+```{r data-science-workflow, out.width = "250px", fig.cap = "Data science workflow emphasized in R4DS. The photo has been reduced using chunk size options.", fig.pos = 'H'}
+knitr::include_graphics("images/data-science.png")
+```
+
+
 
 # Introduction
 
-The **introduction** section provides a preview of the project's focus. Within
-this section, provide an overview on the selected topic for the consumption of a
-manager. In essence, the manager must be able to understand what the project is
-and why they should support the endeavor. You are allowed to make the assumption
-that the manager is knowledgeable in base R concepts. Make sure to answer the
-following questions:
+The topic we are addressing is sentiment analysis on live Fighting Illini Tweets. The idea is to analyze live tweets with sentiment analysis in order to further understand people's reactions to the Fighting Illini and Coach Lovie's performance. 
 
-- What problem or topic are you addressing?
+Lovie Smith has previous ties to the state of Illinois from his head coaching tenure for the Chicago Bears; he was a very splashy hire back in 2016 and expectations were high coming in. So far, the Illini football program has found little success and the sentiment around Lovie seems to be changing. There are articles written about this topic including Chicago Sun Times publishing an article that talks about Lovie Smith's Job security. People are speculating that he will be done after a 4th season if there isn't improvements as there hasn't been any in the past 3 seasons. The current generation of students at Illinois probably remembers Lovie for being the coach that led the Bears to their second ever Super Bowl in 2006 so it is interesting see what kind of reactions fans are tweeting about him now that he is struggling to revive the university's football program. If the struggles continue, there is an expectation that he will be replaced.
 
+The topic came from just naturally being in our school and personal environments. Whether it is going to class  or watching the game with friends, students and fans do not wish our football team was this bad. Given his previous success with the Chicago Bears up north, we hoped Lovie Smith would be the change needed. After seeing little to no improvement, we wanted to confirm our suspicions that students and fans are as displeased with the team on twitter as they are in the conversations we hear. There seemed to be a buffer period in his first few seasons where fans gave him the benefit of the doubt, as he was getting used to the college scene, but we have a feeling that period may be over and fans' patience are wearing thin. 
 
+We plan on extracting live tweets and matching words/portions with positive/negative/neutral words. From this, we are able to determine if if each individual extracted tweet is overall positive/negative/neutral, by assigning positive words ranging from 1 to 5, negative words ranging from -1 to -5, and neutral words to 0, and finding the overall sum. Ultimately, we want to apply the extracted tweet, the sentiment analysis, as well as diagnostic plots into an interactable shiny app to determine overall reactions to the team and coach. 
 
+Our ultimate goal is to determine the overall fanbase opinion on the team and Lovie. We plan on using bar plots that highlight the occurrences of certain keywords and/or feelings. We are also considering creating a wordgraph that increases/decreases the size of particular words based on occurence. At the end, we plan on creating an RShiny app that will be interactive, allowing the user to look at requested graphs with drop down boxes that allow for variation when choosing which words to plot on our graphs, as well as which graphs we want to produce or hide. 
 
-- Why is it interesting or important? In particular, what evidence supports this   conclusion?
+Upon further discussion, we determined one of the better methods of implementing our findings into a Shiny app, would be to split the data into two columns, one for NAME, and the other for the associated SCORE. We noticed that problems arise as the values in our package, were predefined by some person, or some group of people. However, everyone is different, and feel different about certain words. For example, if we have 'decent' as one of the words, some may associate it as being positive, while others may associate it as being negative. To fix this, we came up with a couple methods:
+  1.Implement a drop down menu, set the default scores as the scores from the package, but offer
+  a user input that allows the user to select certain words, and assign different values to them
+  (that differ from whatever the package scores list them as). 
+  2.Provide the top 50 words from the package dictionary, but only display 10 at a time, with
+  'next' button that allows the user to move from page to page in order to avoid clutter in the
+  drop down menu.
 
+Sentiment Analysis requires an understanding of Regex. The reason for this, is to identify patterns, and using these patterns to extract specific portions of tweets that we would like to analyze. Furthermore, Regex helps us also to split and mutate certain tweets, that can further be compared to our positive, negative, and neutral words.
 
-
-
-- Cite papers or reputable sources that back up this claim. (You may want to find - material using Google Scholar.)
-
-
-
-- Where did the problem or topic come from?
-
-
-
-- What is your idea for addressing the problem or topic?
-
-
-
-- How does your idea match with the course’s focus on statistical programming?
-
-
-
-
-
-The topic we are addressing is to examine the opinions of fans and students of the Illini football team by looking at tweets. This is interesting because Illini Football is not doing particularly well after hiring Lovie Smith and we would like to confirm that the overall opinion of the team and Lovie is negative. There are article written about this topic including Chicago Sun Times publishing an article that talks about Lovie Smith's Job security. People are speculating that he will be done after a 4th season if there isn't improvements as there hasn't been any in the past 3 seasons. 
-
-
-
-
-
-
-
-
-
-
-
-
-## Example Data
-
-```{r echo = FALSE}
-# Advance Twitter Search for tweets for Iowa game that "@"-ed Illinifootball twitter
-
-tweets_illinifootball = read_html("https://twitter.com/search?l=&q=%40illinifootball%20OR%20%40loviesmith%20since%3A2018-11-17%20until%3A2018-11-18&src=typd")
-
-# Scraping the data for the text within the tweet
-
-tweets = tweets_illinifootball %>% 
-  html_nodes("div.js-tweet-text-container > p") %>% 
-  html_text()
-
-# Displaying the Tweets
-tweets
-```
-
-These were some of the tweets regarding the last game against Iowa where the Illini lost 63 - 0. As you can see some of the tweets already show disdain against Lovie Smith and the team. Fans are embarrassed and some are saying they will not renew season tickets until the defensive coordinator is fired. We will categorize the data for sentiment analysis putting the words in the tweets into categories such as "anger", "negative", "positive", "fear", "trust", etc. By breaking down the tweets like this we will get a better understanding of the meaning of each tweet without having to manually go through each one and decipher them. 
-
-
-
+We also will be applying more recent topics, such as RShiny, that allows for interactive sliders and drop down menus that will assist the user in choosing exactly what they want to display. In our case, we will have options to graph specific plots (i.e bar plots) as well as specific words that we would want to appear along the x and/or y axes of our plots.
 
 # Related Work
 
-The **Related Work** section must provide an overview of pre-existing solutions.
-In essence, please credit those who enabled you to consider embarking on this 
-project, or as Issac Newton in [a letter to Robert Hooke on 15 February 1676](http://www.newtonproject.ox.ac.uk/view/texts/normalized/OTHE00101) more
-aptly put it:
-
-> If I have seen further it is by standing on the shoulders of Giants.
-
-Address the following questions:
-
-- What other ideas have been attempted?
-- Why is your team's idea original compared to prior work?
+We plan on using the information within the Text Mining with R book written by Julia Silge and David Robinson. In the book they show how to use the tidytext package which contains several sentiment lexicons within the 'sentiments' dataset. There are three general-purpose lexicons contained in the 'sentiments' package which are 'AFINN', 'bing' and 'nrc'. We plan on using 'AFINN' and 'nrc' of the lexicons as 'bing'  can be considered a more specific lexicon of 'AFINN'. This will be necessary as these are essentially dictionaries of words pre-categorized which will lead to more precise data than if we were to create a dictionary on our own. 
 
 # Methods
 
-The **methods** section should discuss how you plan to solve your problem.
-The overall details of the project including any preliminary work. In 
-particular, the implementation details behind the approach should be explained
-at length here. The more details you can provide, the better feedback your
-group can receive. As a result, the section serves as a roadmap of what features
-are going to be developed and any external dependencies that are required. 
-**The majority of your code should be _suppressed_ from the displaying in this
-section**. Please refer to code and figures placed in the appendix. The latter can be referenced using: 
+We plan on using the packages listed:
+"Tidytext"
+"ggplot2"
+"Rvest"
+"Tidyr"
+"dplyr"
+"twitteR"
+"stringr"
 
-```
-Figure \@ref(fig:code-chunk-name-here).
-```
+In order to run sentiment analysis, we will first need to collect the data set. This will involve using the twitter API along with the "twitteR" package to web scrape the data. Now, we will have a string of text containing what the tweet was. From there, we can use the "stringr" package and split the tweet into individual words, along with omitting some of the data like special characters, emojis, and hashtags. After that has been completed, we will need to organize it with "Tidyr" and "dplyr" in order to begin using the "Tidytext" package to run the sentiment analysis. Finally, we will create an RShiny app to display our graphs made with "ggplot2". 
 
-For example, the figure of the data science workflow is accessible via
-Figure \@ref(fig:data-science-workflow).
 
-To satisfy this section, provide detailed responses for the following:
+To create the RShiny App, we will need two main tabs. One will serve as a "Data" section, and the other will be "Visualizations/Graphs". The "Data" section can be referenced in Figure 1 in the appendix. It will have a menu on the left that will allow a user to search for a word and assign its value if the users' opinion differs from the lexicon. The words that the user has reassigned its values will be displayed to the right of the section, along with a reset button to erase user input. Below that will be a "Filter" section that for right now will only filter the most frequent words. That information will be displayed to the right of the filter section. You can divide the data even further than that by displaying positive, neutral, and negative words (default is all 3). We are considering implementing a slider which you can then further filter words, i.e. instead of positive values, you can now only show positive values 3 to 5. 
 
-- What packages will you use in your implementation?
-- What code will the group need to write for the project?
-- Provide low-fidelity prototypes (e.g. _sketches_ on paper) in the **Appendix** of:
-    - Visualisations
-        - What kinds of graphs will you use?
-        - Label axes, provide a title, and mention any interactivity.
-    - Interface
-        - All projects need a Shiny Application.
-        - Sketch how a user will work with the shiny application.
-- What have you done or learned so far for the project? 
 
-We are primarily wanting to ensure that your project has met the criterion
-of the data science pipeline. In essence, we want to see evidence that your
-project has:
+In the "Visualization/Graphs" section users will be able select a graph to display from the dropdown menu. The graph will display to the right. Possible graphs include emotions in tweets, contribution of sentiment, and sentiment scores of tweets. 
 
-- Reading data into _R_ or accessing data via an API.
-- Data transformations (e.g. Tidying ([`tidyr`](http://tidyr.tidyverse.org/)), Summarizing ([`dplyr`](http://dplyr.tidyverse.org/)), et cetera.)
-- Data visualization (e.g. [`ggplot2`](http://ggplot2.tidyverse.org/),
-  [`plotly`](https://plot.ly/ggplot2/), [`gganimate`](https://github.com/dgrtwo/gganimate))
-- R functions either in external packages or included in a new _R_ package
-- Interactive Interface (e.g. [`shiny`](https://shiny.rstudio.com/))
-- Reproducibility
 
 # Feasibility
 
@@ -196,160 +127,74 @@ by answering:
 
 # Conclusion
 
-The **Conclusion** section provides a summary of the entire proposal. This acts
-as the final paragraph that can be used to justify the work being proposed.
-In general, this means you should make one last push to identify the problem,
-potential solution, and its novelty.
-
-If a group's project is well written, uses thoughtful and creative approaches,
-and is sufficiently interesting you may be asked to have your work "published"
-as an example for future students. **All group members will have to agree to
-publication.** You may also be asked to make edits before publication, but you 
-should be sure to **proofread** and **spellcheck** your work before your
-initial submission.
+To summarize, our objective is to use sentiment analysis of UIUC football tweets, to determine the overall reactions from the fan base over the performance of the Fighting Illini and Coach Lovie Smith. Because our project is an implementation of sentiment analysis, our goal is to simply analyze fan base reactions, determining if the people are positive or negative about the overall football season, rather than identifying a problem. However, our project helps to identify how the Fighting Illini and Coach Lovie are performing by analyzing a score that indicates positive or negative reactions. That being said, if required to identify a problem, it would be that the Fighting Illini/Coach Lovie have been underperforming, despite Lovie's NFL coaching experience and unfortunately, a solution may be to potentially release Coach Lovie Smith. 
 
 \newpage
 
 # Appendix
 
-The **Appendix** section contains figures, sample data, and other miscellaneous
-entries. Generally, this sketch seeks to contain all of your _planning_ information.
+## Example Data
 
-- Provide the sketches of visualisations and the shiny application.
-- Provide an overview on the desired functions.
-    - What is a function's input? Output? How are functions related to each other.
-    - For example, `read_data("hospital_data.csv")` must be called before `tidy_hospital()`, et cetera.
-- Provide a sample of the data set you intend to use (~10 observations).
-
-If you used previous code chunks within the document, this information can
-be dynamically retrieved and embedded.
-
-```{r, ref.label=knitr::all_labels(),echo=TRUE,eval=FALSE}
+```{r echo = FALSE}
+# Advance Twitter Search for tweets for Iowa game that "@"-ed Illinifootball twitter
+tweets_illinifootball = read_html("https://twitter.com/search?l=&q=%40illinifootball%20OR%20%40loviesmith%20since%3A2018-11-17%20until%3A2018-11-18&src=typd")
+# Scraping the data for the text within the tweet
+tweets = tweets_illinifootball %>% 
+  html_nodes("div.js-tweet-text-container > p") %>% 
+  html_text()
+# Displaying the Tweets
+tweets
 ```
 
-```{r hitters-data}
-kable(
-  head(mtcars, 20),
-  format = "latex",
-  caption = "This is an example of a table in the Appendix. Notice that it is way too big, and has way too much information. We use the $\\texttt{kableExtra}$ package to shrink it down, but even then, no one would actually read this table.",
-  booktabs = TRUE
-) %>%
-  kable_styling(latex_options = c("striped", "scale_down"))
-```
-
-```{r wage-data}
-kable(
-  head(mtcars, 20),
-  format = "latex",
-  caption = "This is another example of a ridiculous table. Notice that it is automatically numbered.",
-  booktabs = TRUE
-) %>%
-  kable_styling(latex_options = c("striped", "scale_down"))
-```
-
-
-## Formatting Notes
-
-
-### `R` Code and `rmarkdown`
-
-An important part of the report is communicating results in a well-formatted manner. This template document should help a lot with that task. Some thoughts on using `R` and `rmarkdown`:
-
-- Chunks are set to not echo by default in this document.
-- Consider naming your chunks. This will be necessary for referencing chunks 
-  that create tables or figures.
-- One chunk per table or figure!
-- Tables should be created using `knitr::kable()`.
-- Consider using `kableExtra()` for better presentation of tables. (Examples in this document.)
-- Caption all figures and tables. (Examples in this document.)
-- Use the `img/` sub-directory for any external images.
-- Use the `data/` sub-directory for any external data.
-
-### LaTeX
-
-While you will not directly work with LaTeX, you may wish to have some details
-on working with TeX can be found in 
-[this guide by UIUC Mathematics Professor A.J. Hildebrand ](https://faculty.math.illinois.edu/~hildebr/tex/latex-start.html).
-
-With `rmarkdown`, LaTeX can be used inline, like this, $a ^ 2 + b ^ 2 = c ^ 2$,
-or using display mode,
-
-$$
-\mathbb{E}_{X, Y} \left[ (Y - f(X)) ^ 2 \right] = \mathbb{E}_{X} \mathbb{E}_{Y \mid X} \left[ ( Y - f(X) ) ^ 2 \mid X = x \right]
-$$
-
-You **are** required to use BibTeX for references. With BibTeX, we could 
-reference the `rmarkdown` paper [@allaire2015rmarkdown] or the tidy data paper.
-[@wickham2014tidy] Some details can be found in the 
-[`bookdown` book](https://bookdown.org/yihui/bookdown/citations.html). Also,
-hint, [Google Scholar](https://scholar.google.com/) makes obtaining BibTeX 
-reference extremely easy. For more details, see the next section...
-
-<!-- Force a new page for references -->
-\newpage
+These were some of the tweets regarding the last game against Iowa where the Illini lost 63 - 0. As you can see some of the tweets already show disdain against Lovie Smith and the team. Fans are embarrassed and some are saying they will not renew season tickets until the defensive coordinator is fired. We will categorize the data for sentiment analysis putting the words in the tweets into categories such as "anger", "negative", "positive", "fear", "trust", etc. By breaking down the tweets like this we will get a better understanding of the meaning of each tweet without having to manually go through each one and decipher them. 
 
 # References
 
+https://www.tidytextmining.com/sentiment.html
+@TextMiningR2016Silge{,
+title = {tidytext: Text Mining and Analysis Using Tidy Data Principles in R},
+author = {Julia Silge and David Robinson},
+doi = {10.21105/joss.00037},
+url = {http://dx.doi.org/10.21105/joss.00037},
+year = {2016},
+publisher = {The Open Journal},
+volume = {1},
+number = {3},
+journal = {JOSS},
+}
+
+
+http://bogdanrau.com/blog/collecting-tweets-using-r-and-the-twitter-search-api/
+@CollectingTweetsAPI2014Rau{rau_2014, 
+title={Collecting Tweets Using R and the Twitter Search API}, url={http://bogdanrau.com/blog/collecting-tweets-using-r-and-the-twitter-search-api/}, journal={Bogdan Rau, MPH}, 
+author={Rau, Bogdan}, 
+year={2014}, 
+month={Aug}
+}
+
+http://dataaspirant.com/2018/03/22/twitter-sentiment-analysis-using-r/
+@TwitterSentimentAnalysis2018Sagar{ sagar_2018, 
+title={Twitter Sentiment analysis using R}, url={http://dataaspirant.com/2018/03/22/twitter-sentiment-analysis-using-r/}, journal={Dataaspirant}, 
+author={ Sagar, Chaitanya}, 
+year={2018}, 
+month={Mar}
+}
 
 https://chicago.suntimes.com/sports/lovie-smith-illinois-illini-northwestern-wildcats/
-
-
-https://www.tidytextmining.com/sentiment.html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-The **References** section acts as a bibliography for all papers referenced
-in the **Introduction**, **Related Works**, and **Method** sections. The
-references should be formated in Chicago author-date format, which is the
-default for RMarkdown.
-
-* Provide a list (5+) of papers or items you have read to write this proposal. 
-* Please list all _R_ packages or software referenced.
-
-To acquire software citation information, _R_ has a built-in command
-that creates a BibTex and in-line text citation. To generate the citation
-of an installed _R_ package, type:
-
-```r
-# In R
-citation(package="pkg_name")
-```
-
-For example, to cite `dplyr`, one would generate the BibTex entry from:
-
-```r
-citation(package="dplyr")
-```
-
-```latex
-@Manual{dplyr:2018,
-    title = {dplyr: A Grammar of Data Manipulation},
-    author = {Hadley Wickham and Romain François and Lionel Henry and Kirill Müller},
-    year = {2018},
-    note = {R package version 0.7.7},
-    url = {https://CRAN.R-project.org/package=dplyr},
+@Illini2018Greenberg{greenberg_2018, 
+title={Is Lovie Smith done at Illinois? No, but 63-0 signals the end is inevitable}, url={https://chicago.suntimes.com/sports/lovie-smith-illinois-illini-northwestern-wildcats/}, 
+journal={Chicago Sun-Times}, 
+publisher={Chicago Sun-Times}, 
+author={Greenberg, Steve}, 
+year={2018}, 
+month={Nov}
 }
-```
 
-Note, we added a "name" to the autogenerated citation of `dplyr:2018`. Using
-this name, we can reference the work within the paper via [@dplyr:2018] or @dplyr:2018.
-
-<!-- Remove the newpage break when the above text is no longer useful -->
-\newpage
+https://newsok.com/article/5613773/smith-an-nfl-winner-hasnt-won-at-illinois
+@LovieHotseat2018Tramel{tramel_2018, 
+title={Coach on the hot seat: Illinois' Lovie Smith}, url={https://newsok.com/article/5613773/smith-an-nfl-winner-hasnt-won-at-illinois}, journal={NewsOK.com}, 
+publisher={NewsOK}, 
+author={Tramel, Berry}, 
+year={2018}, 
+month={Nov}
+}
