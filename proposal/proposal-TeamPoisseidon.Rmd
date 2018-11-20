@@ -5,10 +5,10 @@ abstract: |
           | The purpose of this project is to explore sentiment analysis of twitter and how it relates to the illini football team. We will be analyzing the tweets regarding the last game against Northwestern on 11/24. This is in order to see how fans and students view the illini football team and their opinions on Lovie Smith. Lovie Smith has a 6-year contract with the Illini and after 3 years we have failed to make a bowl game. 
 date: "November 13, 2018"
 author:
-  - Joe Broton
-  - Braden Gebavi 
-  - Brad Gibbons
-  - Tim Soo
+  - Joe Broton - jbroton2
+  - Braden Gebavi - gebavi2
+  - Brad Gibbons - btgibbo2
+  - Tim Soo - soo3
 bibliography: bibliography.bib
 output: 
   bookdown::pdf_document2
@@ -44,21 +44,8 @@ if(length(to_install_pkgs)) {
 sapply(pkg_list, require, character.only = TRUE)
 ```
 
-<!-- Force a new page -->
+
 \newpage
-
-# Instructions
-
-This document will walk you through some of the necessary steps of formatting
-your report. Do not mistake the length of this document as an example of the 
-length of a proper report. Length is not important. Communicating your idea 
-in a concise but complete manner is important. The goal of the proposal is to capture details found in Figure \@ref(fig:data-science-workflow).
-
-```{r data-science-workflow, out.width = "250px", fig.cap = "Data science workflow emphasized in R4DS. The photo has been reduced using chunk size options.", fig.pos = 'H'}
-knitr::include_graphics("images/data-science.png")
-```
-
-
 
 # Introduction
 
@@ -135,7 +122,7 @@ To summarize, our objective is to use sentiment analysis of UIUC football tweets
 
 ## Example Data
 
-```{r echo = FALSE}
+```{r echo = FALSE, out.width = "200px"}
 # Advance Twitter Search for tweets for Iowa game that "@"-ed Illinifootball twitter
 tweets_illinifootball = read_html("https://twitter.com/search?l=&q=%40illinifootball%20OR%20%40loviesmith%20since%3A2018-11-17%20until%3A2018-11-18&src=typd")
 # Scraping the data for the text within the tweet
@@ -147,6 +134,17 @@ tweets
 ```
 
 These were some of the tweets regarding the last game against Iowa where the Illini lost 63 - 0. As you can see some of the tweets already show disdain against Lovie Smith and the team. Fans are embarrassed and some are saying they will not renew season tickets until the defensive coordinator is fired. We will categorize the data for sentiment analysis putting the words in the tweets into categories such as "anger", "negative", "positive", "fear", "trust", etc. By breaking down the tweets like this we will get a better understanding of the meaning of each tweet without having to manually go through each one and decipher them. 
+
+
+```{r data-tab,out.extra='angle=90',fig.cap = "Example RShiny App; Data Section", fig.pos = 'H', out.width = "350px"}
+knitr::include_graphics("images/DataTab.jpg")
+```
+
+
+```{r graph-tab,out.extra='angle=90',fig.cap = "Example RShiny App; Graph Section", fig.pos = 'H', out.width = "350px"}
+knitr::include_graphics("images/GraphTab.jpg")
+```
+
 
 # References
 
