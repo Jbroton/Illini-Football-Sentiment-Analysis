@@ -14,6 +14,7 @@ output:
   bookdown::pdf_document2
 ---
 
+
 ```{r set-options, include = FALSE}
 # Sets default chunk options
 knitr::opts_chunk$set(
@@ -30,7 +31,7 @@ knitr::opts_chunk$set(
 
 ```{r install-and-load-packages, include = FALSE}
 # All packages needed should be loaded in this chunk
-pkg_list = c('knitr', 'kableExtra', 'magrittr','rvest')
+pkg_list = c('knitr', 'kableExtra', 'magrittr','rvest', 'tidytext', 'ggplot2', 'tidyr', 'dplyr', 'twitteR', 'stringr')
 
 # Determine what packages are NOT installed already.
 to_install_pkgs = pkg_list[!(pkg_list %in% installed.packages()[,"Package"])]
@@ -78,13 +79,13 @@ We plan on using the information within the Text Mining with R book written by J
 # Methods
 
 We plan on using the packages listed:
-* "Tidytext"
-* "ggplot2"
-* "Rvest"
-* "Tidyr"
-* "dplyr"
-* "twitteR"
-* "stringr"
+"Tidytext"
+"ggplot2"
+"Rvest"
+"Tidyr"
+"dplyr"
+"twitteR"
+"stringr"
   
 In order to run sentiment analysis, we will first need to collect the data set. This will involve using the twitter API along with the "twitteR" package to web scrape the data. Now, we will have a string of text containing what the tweet was. From there, we can use the "stringr" package and split the tweet into individual words, along with omitting some of the data like special characters, emojis, and hashtags. After that has been completed, we will need to organize it with "Tidyr" and "dplyr" in order to begin using the "Tidytext" package to run the sentiment analysis. Finally, we will create an RShiny app to display our graphs made with "ggplot2". 
 
@@ -96,21 +97,15 @@ In the "Visualization/Graphs" section users will be able select a graph to displ
 
 
 # Feasibility
+In order for this to be completed by the deadline 12/18 this is how the work must be split up and be completed by. 
 
-The **Feasibility** section is meant to act as a way to reflect upon the proposal.
-Generally speaking, there will be three weeks of heavy development time afforded
-to the group. Building a detailed ecosystem or heavily scripting in a different
-language will likely not lead your team to success. Hence, please provide
-a project management overview of *who* on your team will be doing *what* and *when*
-by answering:
-
-- Is this project able to be completed before the end of the semester?
-- What steps must occur to complete the project before the end of the semester?
-- What is the work plan to accomplish the necessary tasks before the end of the
-  semester?
-  - Specify who is doing what and when.
-  - Consider making a [Gantt chart](https://en.wikipedia.org/wiki/Gantt_chart)
-    to highlight each stage of the project.
+Joe - Web Scraping the Tweets after the Illini Football Game - by 11/27/18  
+Braden, Brad - Organizing the data - by 11/30/18  
+Joe, Tim -Running sentiment analysis on it - by 12/5/18  
+Brad, Braden - Creating the plots for our R Shiny App -  by 12/6/18  
+Joe, Tim- Create an R Shiny App that displays the information we have gathered - By 12/15/18  
+Joe, Tim - Create a demo video - 12/16/18  
+All - Finalizing the report - 12/17/18  
 
 # Conclusion
 
@@ -149,50 +144,44 @@ knitr::include_graphics("images/GraphTab.jpg")
 # References
 
 https://www.tidytextmining.com/sentiment.html
-@TextMiningR2016Silge{,
-title = {tidytext: Text Mining and Analysis Using Tidy Data Principles in R},
-author = {Julia Silge and David Robinson},
-doi = {10.21105/joss.00037},
-url = {http://dx.doi.org/10.21105/joss.00037},
-year = {2016},
-publisher = {The Open Journal},
-volume = {1},
-number = {3},
-journal = {JOSS},
-}
 
 
 http://bogdanrau.com/blog/collecting-tweets-using-r-and-the-twitter-search-api/
-@CollectingTweetsAPI2014Rau{rau_2014, 
-title={Collecting Tweets Using R and the Twitter Search API}, url={http://bogdanrau.com/blog/collecting-tweets-using-r-and-the-twitter-search-api/}, journal={Bogdan Rau, MPH}, 
-author={Rau, Bogdan}, 
-year={2014}, 
-month={Aug}
-}
+ 
 
 http://dataaspirant.com/2018/03/22/twitter-sentiment-analysis-using-r/
-@TwitterSentimentAnalysis2018Sagar{ sagar_2018, 
-title={Twitter Sentiment analysis using R}, url={http://dataaspirant.com/2018/03/22/twitter-sentiment-analysis-using-r/}, journal={Dataaspirant}, 
-author={ Sagar, Chaitanya}, 
-year={2018}, 
-month={Mar}
-}
 
 https://chicago.suntimes.com/sports/lovie-smith-illinois-illini-northwestern-wildcats/
-@Illini2018Greenberg{greenberg_2018, 
-title={Is Lovie Smith done at Illinois? No, but 63-0 signals the end is inevitable}, url={https://chicago.suntimes.com/sports/lovie-smith-illinois-illini-northwestern-wildcats/}, 
-journal={Chicago Sun-Times}, 
-publisher={Chicago Sun-Times}, 
-author={Greenberg, Steve}, 
-year={2018}, 
-month={Nov}
-}
 
 https://newsok.com/article/5613773/smith-an-nfl-winner-hasnt-won-at-illinois
-@LovieHotseat2018Tramel{tramel_2018, 
-title={Coach on the hot seat: Illinois' Lovie Smith}, url={https://newsok.com/article/5613773/smith-an-nfl-winner-hasnt-won-at-illinois}, journal={NewsOK.com}, 
-publisher={NewsOK}, 
-author={Tramel, Berry}, 
-year={2018}, 
-month={Nov}
-}
+
+
+Silge J, Robinson D (2016). “tidytext: Text
+Mining and Analysis Using Tidy Data
+Principles in R.” _JOSS_, *1*(3). doi:
+10.21105/joss.00037 (URL:
+http://doi.org/10.21105/joss.00037), <URL:
+http://dx.doi.org/10.21105/joss.00037>.  
+
+H. Wickham. ggplot2: Elegant Graphics for
+  Data Analysis. Springer-Verlag New York,
+  2016.
+
+Hadley Wickham and Lionel Henry (2018).
+  tidyr: Easily Tidy Data with 'spread()'
+  and 'gather()' Functions.
+  http://tidyr.tidyverse.org,
+  https://github.com/tidyverse/tidyr.
+
+Jeff Gentry (2015). twitteR: R Based
+  Twitter Client. R package version 1.1.9.
+  https://CRAN.R-project.org/package=twitteR
+  
+ Hadley Wickham (2018). stringr: Simple,
+  Consistent Wrappers for Common String
+  Operations. http://stringr.tidyverse.org,
+  https://github.com/tidyverse/stringr.
+
+
+
+
