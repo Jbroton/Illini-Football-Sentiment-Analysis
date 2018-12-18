@@ -88,9 +88,7 @@ As the user clicks on sentiment lexicon dictionary choices, the rshiny updates w
 
 In the "By Tweet" section it displayed the most positive and negative tweets. A score is calculated for each tweet. We must first call the NRC sentiment dictionary to calculate the presenece of eight different emotions and their corresponding valence, "anger", "antipication", "digust", "fear", "joy", "sadness", "surprise", "trust", "negative", and "positive". The sentiment values are then assigned with the relevant functions of syuzhet::get_nrc_sentiment, and syuzhet::gent_sentiment [@syuzhet]. Once the sentiment values are determined, we then get a measure of the overall emoitonal valence in the tweet. 
 
-There is an extra layer of interactivity which allows the user to use their own search terms and run the analysis we did. This is demonstrated in the 'Results' section where we show what running only 'loviesmith' and 'illinifootball'.
-
-All our plots were created using the ggplot2 package [@ggplot2]. 
+All our plots were created using the ggplot2 packages [@ggplot2]
 
 
 
@@ -119,30 +117,11 @@ After running the sentiment analysis on our default data set we can see that fan
 
 # Conclusion
 
-
-
+This project was inspired by our pride and desire to win as students and fans as we have been here for some brutal years in terms of success on the football field.  After the third consecutive losing season by the Fighting Illini led by Lovie Smith, we became impatient with the team and started to question both Lovie's ability as a college coach and the team as a whole.  Since we aren't the one's who get to make the decisions we wanted to see if other Fighting Illini fans were with us.  Instead of taking a poll we decided to collect tweets off of Twitter using keywords related to the team and run sentimental analysis to see what the fanbase was thinking.  Based off of the results there really aren't too many other fans who think the same we do.  It turns out that the majority of fans still can't make up their minds and remain neutral on the topic.  We expected there to be plenty of neutrality as nobody want to talk bad about their own team and choose to remain optimistic but we didn't expect there to be a greater positive feeling than negative.  But that is just the case as we see from the results that there are more positive fans on Twitter than critical one's like us.  That just speaks to the culture of this University as fans are still remaining positive after so many poor seasons in a row.   
 
 \newpage
 
-
-# Appendix
-
-see 'DefaultDataExtractor.R' for how we extracted the default data set
-
-default data set had 89 variables but we only used twitter_data$text 
-
-twitter_data$text - is a string of text that was displayed in the tweet 
-
-app.R file contains our RShiny app and how we conducted sentiment analysis
-
-
-
-
 # References
-
-
-
-
 
 
 
