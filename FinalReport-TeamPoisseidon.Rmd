@@ -112,6 +112,7 @@ knitr::include_graphics("/cloud/project/images/dynamicdata_shiny.png")
 
 # Discussion
 
+After running the sentiment analysis on our default data set we can see that fans are still remaining relatively positive in regards to Lovie and the Fighting Illini football team as a whole.  From the "By Tweet - Distribution" plot we can see that the vast majority of tweets were neutral but the positives outweighed the negatives by a lot.  Aside from the quantity of tweets, the "Score Distribution" plot using our default scores is left - skewed in favor of the positives.  This shows that fans were using more impactful positive words in each tweet than they were negative.  A similar conslusion can be made from the "Bing Words" plot that shows the positive words having a much larger contribution to the overall sentiment than the negatives, with the exception of "defensive".  All of these plots show that fans aren't quite ready to get rid of Lovie even after the embarassing blowout loss to Iowa and contract extension given to him for another two years.  In his three years at Illinois the team has a record of 9-27 but it turns out that's not enough to get the Champaign faithful to turn on him.  As students and fans we were definitely thinking negatively about the team and expected the fans on Twitter to have the same concerns, but they don't.  Maybe we are just too critical of fans and need to have more faith in the team, either way we are in the minority.  Even though the positives do outweigh the negatives it should be noted that the overwhelming majority of the tweets were neutral so it could just be that fans are bullish about speaking out negatively on social media about the team, or they just don't really know what to think at this point.  It will be interesting to continue to monitor this as the team starts training camp and progresses into the new season.  We will see how tight of a leash fans will give Lovie next year especially after the new contract extension and higher expectations.      
 
 
 # Conclusion
@@ -121,11 +122,6 @@ knitr::include_graphics("/cloud/project/images/dynamicdata_shiny.png")
 
 # References
 
-
-
-\newpage
-
-# Appendix
 
 
 
