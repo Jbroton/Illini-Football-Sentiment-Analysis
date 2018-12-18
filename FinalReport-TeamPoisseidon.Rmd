@@ -118,9 +118,29 @@ After running the sentiment analysis on our default data set we can see that fan
 # Conclusion
 
 
+
+
 \newpage
 
+
+# Appendix
+
+see 'DefaultDataExtractor.R' for how we extracted the default data set
+
+default data set had 89 variables but we only used twitter_data$text 
+
+twitter_data$text - is a string of text that was displayed in the tweet 
+
+app.R file contains our RShiny app and how we conducted sentiment analysis
+
+
+
+
 # References
+
+
+
+
 
 
 
