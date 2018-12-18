@@ -119,9 +119,13 @@ After running the sentiment analysis on our default data set we can see that fan
 
 This project was inspired by our pride and desire to win as students and fans as we have been here for some brutal years in terms of success on the football field.  After the third consecutive losing season by the Fighting Illini led by Lovie Smith, we became impatient with the team and started to question both Lovie's ability as a college coach and the team as a whole.  Since we aren't the one's who get to make the decisions we wanted to see if other Fighting Illini fans were with us.  Instead of taking a poll we decided to collect tweets off of Twitter using keywords related to the team and run sentimental analysis to see what the fanbase was thinking.  Based off of the results there really aren't too many other fans who think the same we do.  It turns out that the majority of fans still can't make up their minds and remain neutral on the topic.  We expected there to be plenty of neutrality as nobody want to talk bad about their own team and choose to remain optimistic but we didn't expect there to be a greater positive feeling than negative.  But that is just the case as we see from the results that there are more positive fans on Twitter than critical one's like us.  That just speaks to the culture of this University as fans are still remaining positive after so many poor seasons in a row.   
 
+If we were to do this project again, we would change a few things. First, we believe we would have to more narrow our search query keywords. Since Lovie Smith was previously a Chicago Bears Coach, when running the tweet extractor, we grabbed a some tweets that were more related to the Bears. This is shown on the most negative tweet in the Default Data. By making the keywords more specific, we think we can get more reliable tweets that are strictly about the Fighting Illini. We also ran into issues with the standard twitter search API. The twitter standard API only allows for limited amount of sample tweets. This means that we were not able to extract more tweets to make the results more reliable. In efforts to try to combat this, we were able to get the free premium standard twitter API later in the project but currently no R package works with the premium API. Using the python package 'python-twitter' would have allowed us to grab 2 million tweets in a month time frame. Which would have made the results much more reliable.
+
+One last potential change, would be to only extract tweets during a certain timeframe. Doing this, for example on gameday until a day after, would allow us to reduce the amount of tweets not about the Fighting Illini or Lovie Smith (his time at Illini). This is because when we search "Lovie Smith" tweets during that time frame, the tweets containing 'Lovie Smith' will more likely about the illini game than his time coaching for the Bears. 
+
+
 \newpage
 
-<<<<<<< HEAD
 
 # Appendix
 
@@ -133,9 +137,6 @@ twitter_data$text - is a string of text that was displayed in the tweet
 
 app.R file contains our RShiny app and how we conducted sentiment analysis
 
-
-=======
->>>>>>> fc7a8ed6ac777d60807353dc98115059598b5788
 # References
 
 
