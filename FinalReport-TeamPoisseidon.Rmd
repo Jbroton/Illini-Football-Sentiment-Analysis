@@ -136,8 +136,6 @@ twitter_data$text - is a string of text that was displayed in the tweet
 app.R file contains our RShiny app and how we conducted sentiment analysis
 
 
-
-
 # References
 
 
