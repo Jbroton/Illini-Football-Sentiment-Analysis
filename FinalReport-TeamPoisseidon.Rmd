@@ -88,7 +88,9 @@ As the user clicks on sentiment lexicon dictionary choices, the rshiny updates w
 
 In the "By Tweet" section it displayed the most positive and negative tweets. A score is calculated for each tweet. We must first call the NRC sentiment dictionary to calculate the presenece of eight different emotions and their corresponding valence, "anger", "antipication", "digust", "fear", "joy", "sadness", "surprise", "trust", "negative", and "positive". The sentiment values are then assigned with the relevant functions of syuzhet::get_nrc_sentiment, and syuzhet::gent_sentiment [@syuzhet]. Once the sentiment values are determined, we then get a measure of the overall emoitonal valence in the tweet. 
 
-All our plots were created using the ggplot2 packages [@ggplot2]
+There is an extra layer of interactivity which allows the user to use their own search terms and run the analysis we did. This is demonstrated in the 'Results' section where we show what running only 'loviesmith' and 'illinifootball'.
+
+All our plots were created using the ggplot2 package [@ggplot2]. 
 
 
 
