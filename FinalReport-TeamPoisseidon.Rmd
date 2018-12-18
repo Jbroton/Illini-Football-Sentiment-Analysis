@@ -40,8 +40,7 @@ to_install_pkgs = pkg_list[!(pkg_list %in% installed.packages()[,"Package"])]
 if(length(to_install_pkgs)) {
   install.packages(to_install_pkgs, repos = "https://cloud.r-project.org")
 }
-#install.packages("kableExtra")
-library('kableExtra')
+
 # Load all packages
 sapply(pkg_list, require, character.only = TRUE)
 ```
@@ -63,19 +62,45 @@ We also will be applying more recent topics, such as RShiny, that allows interac
 # Related Work
 
 Noel Bambrick extracted 2.2 million tweets from super 51 and ran sentiment analysis..  It is a very similar idea to ours as it monitors tweets focusing on the volume, sentiment, and team specific fan reactions.  The difference with our idea is that we are only analysing the tweets for one team.  In this study, he wanted to find out who twitter thought was going to win the game based off of real time tweets throughout the game but in our study we are just focused on the Fighting Illini fans opinions of the team and Lovie Smith on Twitter. He used the AYLIEN Text Analysis API which you have to pay for. Our access from the standard free Twitter API is 250 tweets per query. Our We are using ggplot2 to visualize our data and Noel used Tableau.  
+
+
+
 We also looked at a sentiment analysis project wherein tweets regarding the Colorado Floods were analyzed. We used this as a baseline for how a good sentiment analysis project should look. In accordance with that, we looked at multiple articles describing the general process of collecting tweets through R and Twitter’s API.
+
+
+
 We also used information from the “Text Mining with R” book in which different general-purpose lexicons categorized words under different sentiments, giving us more precise data than if we created our own lexicon.
 
 
 # Methods
 
-In order to run sentiment analysis, we will first need to collect the data set. To do this, we need to use the ‘searchTwitter’ function using the ‘twitteR’ package. Using this function allows us to to search through tweets with keywords that we feel Fighting Illini fans would include within their 140 character limit tweet. The key query terms we searched for were 'lovie smith', 'illini football', 'loviesmith', 'illinifootball'. The search function when you include a space, makes sure that both words are included in the tweet. By removing the space between the keywords, it allows us to be able to search for that extract phrase which means we pulled tweets with that extract phrase and those with the hash tags associated with the phrase (i.e. #loviesmith, #illinifootball). 
+In order to run sentiment analysis, we will first need to collect the data set. To do this, we need to use the ‘searchTwitter’ function using the ‘twitteR’ [@twitteR] package. Using this function allows us to to search through tweets with keywords that we feel Fighting Illini fans would include within their 140 character limit tweet. The key query terms we searched for were 'lovie smith', 'illini football', 'loviesmith', 'illinifootball'. The search function when you include a space, makes sure that both words are included in the tweet. By removing the space between the keywords, it allows us to be able to search for that extract phrase which means we pulled tweets with that extract phrase and those with the hash tags associated with the phrase (i.e. #loviesmith, #illinifootball). 
 
-Our way to approach the word summary was to split each tweet into individual words. In order to clean the data we had to use the stringr package's function of str.split in order to clean up the data by removing unneccesary special characters, and links by various regex patterns. The sentiment analysis is based on all works appeared in all tweet. This was accomplished by the tidytext::unnest_tokens function. Then the words are merged with the selected sentiment lecixons in the sentiments dataset supplied by the tidytext. To run this process smoothly, we used diplr package's function of inner_join with the associated selected sentiment lecixons on the RShiny app interace. The top positive and negative words that were captured using the Bing sentiment lexicon are displayed in the Bing Words section of the graphs. 
+Our way to approach the word summary was to split each tweet into individual words. In order to clean the data we had to use the stringr [@stringr] package's function of str.split in order to clean up the data by removing unneccesary special characters, and links by various regex patterns. The sentiment analysis is based on all works appeared in all tweet. This was accomplished by the tidytext::unnest_tokens function [@tidytext]. Then the words are merged with the selected sentiment lecixons in the sentiments dataset supplied by the tidytext [@tidytext]. To run this process smoothly, we used dyplr [@dpylr]package's function of inner_join with the associated selected sentiment lecixons on the RShiny app interace. The top positive and negative words that were captured using the Bing sentiment lexicon are displayed in the Bing Words section of the graphs. 
 
-In order to add interactivy to the RShiny app, we display the data captured within the 'AFINN' sentiment lexicon. This allows for Users to change the positive and negative values (-5,5) for words they may feel have more weight than what the lexicon states. For example, the data we collected state
+In order to add interactivy to the RShiny app, we display the data captured within the 'AFINN' sentiment lexicon. This allows for Users to change the positive and negative values (-5,5) for words they may feel have more weight than what the lexicon states. For example, the data we collected stated that both good and great appeared 38 times, while both scores in the lexicons contribute 3 units. If the user believes great should hold more weight than good, a user can click on new score column, and change great to the value of 4 units. This is shown respectively at the Score Distribution section and the User Score Distribution updates as a user changes score values. 
+
+As the user clicks on sentiment lexicon dictionary choices, the rshiny updates with the Sentiment Lexicons graph of each selected choice(s). The graph shows the total amount of scores per tweet. 
+
+In the "By Tweet" section it displayed the most positive and negative tweets. A score is calculated for each tweet. We must first call the NRC sentiment dictionary to calculate the presenece of eight different emotions and their corresponding valence, "anger", "antipication", "digust", "fear", "joy", "sadness", "surprise", "trust", "negative", and "positive". The sentiment values are then assigned with the relevant functions of syuzhet::get_nrc_sentiment, and syuzhet::gent_sentiment. Once the sentiment values are determined, we then get a measure of the overall emoitonal valence in the tweet. 
+
+All our plots were created using the ggplot2 packages [@ggplot2]
+
+# Results
 
 
+
+
+# Discussion
+
+
+
+# Conclusion
+
+
+\newpage
+
+# References
 
 
 
