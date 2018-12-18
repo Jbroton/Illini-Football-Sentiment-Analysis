@@ -86,11 +86,27 @@ In the "By Tweet" section it displayed the most positive and negative tweets. A 
 
 All our plots were created using the ggplot2 packages [@ggplot2]
 
+
+
 # Results
 
-![Dynamic Default Data - 908 Tweets](/cloud/project/images/defaultdata_shiny.png)
 
-![Static Data Using "illinifootball" and "loviesmith"](/cloud/project/images/dynamicdata_shiny.png)
+## Dynamic Default Data Using 908 Tweets
+```{r, out.width = "400px"}
+
+knitr::include_graphics("/cloud/project/images/defaultdata_shiny.png")
+
+```
+
+## Static Data Using "illinifootball" and "loviesmith"
+```{r, out.width = "400px"}
+
+knitr::include_graphics("/cloud/project/images/dynamicdata_shiny.png")
+
+```
+
+\newpage
+
 
 
 # Discussion
