@@ -12,7 +12,7 @@ author:
 bibliography: bibliography.bib
 output: 
   bookdown::pdf_document2
-fontsize: '14pt'
+fontsize: '12pt'
 
 ---
 ```{r set-options, include = FALSE}
