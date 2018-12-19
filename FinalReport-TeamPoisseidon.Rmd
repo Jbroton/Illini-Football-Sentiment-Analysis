@@ -98,14 +98,14 @@ All our plots were created using the ggplot2 packages [@ggplot2]
 ## Dynamic Default Data Using 908 Tweets
 ```{r, out.width = "450px"}
 
-knitr::include_graphics("/cloud/project/images/defaultdata_shiny.png")
+knitr::include_graphics("images/defaultdata_shiny.png")
 
 ```
 
 ## Static Data Using "illinifootball" and "loviesmith"
 ```{r, out.width = "450px"}
 
-knitr::include_graphics("/cloud/project/images/dynamicdata_shiny.png")
+knitr::include_graphics("images/dynamicdata_shiny.png")
 
 ```
 
