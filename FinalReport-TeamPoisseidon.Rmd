@@ -43,6 +43,7 @@ if(length(to_install_pkgs)) {
 
 # Load all packages
 sapply(pkg_list, require, character.only = TRUE)
+
 ```
 
 
