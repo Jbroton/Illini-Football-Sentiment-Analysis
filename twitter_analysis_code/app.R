@@ -7,7 +7,7 @@ library(shiny)
 
 #####---- define Function section ----####
 
-pkg_list = c("rtweet", "ggplot2", "tidyr", "dplyr", "tidytext", "tm", "widyr", "RColorBrewer", "reshape2", "syuzhet", "shinyjs", "igraph", "twitteR", "httr", "wordcloud", "base64enc", "openssl", "httpuv", "DT")
+pkg_list = c("rtweet", "shinythemes", "ggplot2", "tidyr", "dplyr", "tidytext", "tm", "widyr", "RColorBrewer", "reshape2", "syuzhet", "shinyjs", "igraph", "twitteR", "httr", "wordcloud", "base64enc", "openssl", "httpuv", "DT")
 mia_pkgs = pkg_list[!(pkg_list %in% installed.packages()[,"Package"])]
 if(length(mia_pkgs) > 0) install.packages(mia_pkgs)
 loaded_pkgs = lapply(pkg_list, require, character.only=TRUE)
