@@ -13,11 +13,10 @@ if(length(mia_pkgs) > 0) install.packages(mia_pkgs)
 loaded_pkgs = lapply(pkg_list, require, character.only=TRUE)
 
 # Change the next four lines based on your own consumer_key, consume_secret, access_token, and access_secret.
-consumer_key <- "oJ2IQ5HrUgTbla4uFdYe7Zm8J"
-consumer_secret <-"p5Hz8PWubUdJTNTDm4pY5WYYYby0sDvgqW4R6kJhHmFSOX40ZS"
-access_token <- "2189043781-rZzKPC8Yqga1FrgCWHlGjM0nADAnJvWnkUOplGo"
-access_secret <- "1gA7j3v5Bhm2gYQFEqx3PKbH4azfRWc6LyCjgQ689EQ0N" 
-
+consumer_key <- "KGipiCFKISmGkruIrb2NgjUuh"
+consumer_secret <- "JLzG6LKYMqGbxZYguwPYSyqgC39orNdI4tkyWWthBEUiYRCPaP"
+access_token <- "834110859785932800-126anTJOQDb6aiO99EdHIaSa6ZBZaeb"
+access_secret <- "01RcJ45hBWFmHrRunO8R0vU87d6KWQ7VukGdBAi0R7bre"
 
 searching <- function(search_string) {
   search_input <- paste0(search_string, " -filter:retweets")
