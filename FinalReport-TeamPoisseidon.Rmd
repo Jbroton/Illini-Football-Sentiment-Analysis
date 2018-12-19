@@ -75,6 +75,27 @@ We also used information from the “Text Mining with R” book in which differe
 
 # Methods
 
+
+**Packages and functions used:**
+
+
+|Package  |Function            |Task                                                                      |
+|---------|--------------------|-------------------------------------|
+|twitteR  |setup_twitter_oauth |This function wraps the OAuth authentication handshake functions from the httr package for a twitteR session  |
+|twitteR  |searchTwitter       |This function issues a search of Twitter based on a supplied search string.  |
+|twitteR  |twListToDF          |This function takes a list of objects from a single twitteR class and return a data.frame version of the members |
+|tidytext |unnest_tokens       |To split each tweet into individual words     |
+|tidytext |get_sentiments      |To get a Tidy data frame of a single sentiment lexicon |
+|dplyr    |Inner_join <br>mutate <br>filter |Join two tables together - Merge words with the selected dictionary, and obtain the sentimental values/categories.And other dplyr functions focusing on tools for working with data frames. |
+|syuzhet  |get_nrc_sentiment   |Get emotions and valence from NRC dictionary |
+|tidyr    |spread              |tidyr functions are to help you create tidy data |
+|ggplot2  |ggplot              |For graphics |
+|shiny    |Various functions   |For creating R Shiny application |
+|DT       |renderDataTable <br>dataTableOutput <br>coerceValue <br>replaceData |These functions are used to render the data table widget in Shiny, allow users to make changes to data, and the relevant plot will be updated accordingly. |
+
+
+
+
 In order to run sentiment analysis, we will first need to collect the data set. To do this, we need to use the ‘searchTwitter’ function using the ‘twitteR’ [@twitteR] package. Using this function allows us to to search through tweets with keywords that we feel Fighting Illini fans would include within their 140 character limit tweet. The key query terms we searched for were 'lovie smith', 'illini football', 'loviesmith', 'illinifootball'. The search function when you include a space, makes sure that both words are included in the tweet. By removing the space between the keywords, it allows us to be able to search for that extract phrase which means we pulled tweets with that extract phrase and those with the hash tags associated with the phrase (i.e. #loviesmith, #illinifootball). 
 
 Our way to approach the word summary was to split each tweet into individual words. In order to clean the data we had to use the stringr [@stringr] package's function of str.split in order to clean up the data by removing unneccesary special characters, and links by various regex patterns. The sentiment analysis is based on all works appeared in all tweet. This was accomplished by the tidytext::unnest_tokens function [@tidytext]. Then the words are merged with the selected sentiment lecixons in the sentiments dataset supplied by the tidytext [@tidytext]. To run this process smoothly, we used dyplr [@dplyr] package's function of inner_join with the associated selected sentiment lecixons on the RShiny app interace. The top positive and negative words that were captured using the Bing sentiment lexicon are displayed in the Bing Words section of the graphs. 
@@ -85,7 +106,7 @@ As the user clicks on sentiment lexicon dictionary choices, the rshiny updates w
 
 In the "By Tweet" section it displayed the most positive and negative tweets. A score is calculated for each tweet. We must first call the NRC sentiment dictionary to calculate the presenece of eight different emotions and their corresponding valence, "anger", "antipication", "digust", "fear", "joy", "sadness", "surprise", "trust", "negative", and "positive". The sentiment values are then assigned with the relevant functions of syuzhet::get_nrc_sentiment, and syuzhet::gent_sentiment [@syuzhet]. Once the sentiment values are determined, we then get a measure of the overall emoitonal valence in the tweet. 
 
-All our plots were created using the ggplot2 packages [@ggplot2]
+All plots were created using the ggplot2 packages [@ggplot2]
 
 
 
